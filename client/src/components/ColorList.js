@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import axios from "axios";
+//import axios from "axios";
+import { axiosWithAuth } from "../auth/axiosWithAuth";
 
 const initialColor = {
   color: "",
   code: { hex: "" }
 };
 
-const ColorList = ({ colors, updateColors }) => {
+const ColorList = ({ colors, updateColors, setUpdate }) => {
   console.log(colors);
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
@@ -18,7 +19,19 @@ const ColorList = ({ colors, updateColors }) => {
 
   const saveEdit = e => {
     e.preventDefault();
+    console.log(colorToEdit.id); // is the color I want tp push
+
     // Make a put request to save your updated color
+    axiosWithAuth()
+      .put(`/colors/${colorToEdit.id}`, colorToEdit)
+      .then(responce => {
+        console.log(responce.data);
+
+        setUpdate("trigger update");
+        //props.history.push(`/protected`);
+      })
+      .catch(err => console.log(err));
+
     // think about where will you get the id from...
     // where is is saved right now?
   };
