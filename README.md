@@ -29,9 +29,22 @@ In this project you will create a login page and request a token from the server
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] Explain what a token is used for.
+##### Answer: A "token" is a SERVER SIDE Generated encryption Key that can be stored client side to verify a secure concretion is genuine...
+
 - [ ] What steps can you take in your web apps to keep your data secure?
+##### Answer: Aside from best token use and implantation practice, use of "privet" roots, and conditional tests that will only start a "render" if a valid token is found...
+
 - [ ] Describe how web servers work.
+##### Answer: How long you got? Once upon a time warp I had a CCNA, and I am a kid of the 80s when all this crap was buing built in a house hold that managing that development was the income... um... it is a shiny spechil pc box with blinky lights that is at a TCP/IP address so it can SERVE data when reqested from a DNS user friendly address on the "www"....
+
 - [ ] Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+##### Answer:
+.post
+.get
+.put
+.delete
+
+So ya CRUD is more a "concept" than command acronym: create, read, update and delete
 
 
 ## Project Set Up
