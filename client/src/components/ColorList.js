@@ -27,7 +27,7 @@ const ColorList = ({ colors, updateColors, setUpdate }) => {
       .then(responce => {
         console.log(responce.data);
 
-        setUpdate("trigger update");
+        setUpdate(Math.random());
         //props.history.push(`/protected`);
       })
       .catch(err => console.log(err));
@@ -37,7 +37,14 @@ const ColorList = ({ colors, updateColors, setUpdate }) => {
   };
 
   const deleteColor = color => {
+    console.log(color.id);
     // make a delete request to delete this color
+    axiosWithAuth()
+      .delete(`/colors/${color.id}`)
+      .then(res => {
+        setUpdate(Math.random());
+      })
+      .catch(err => console.log(err));
   };
 
   return (
