@@ -47,6 +47,34 @@ const ColorList = ({ colors, updateColors, setUpdate }) => {
       .catch(err => console.log(err));
   };
 
+//STREWACH FUNTIONS
+/*  const handleChange = (event) => {
+    setColorToEdit(
+      {
+        ...colorToEdit,
+        if ([event.target.name] == "color") {
+          [event.target.name]: event.target.value
+        } else {
+          code: { hex: event.target.value }
+        }
+      }
+    );
+    console.log(colorToEdit);
+  };*/
+
+  const addColor = (event) => {
+    event.preventDefault();
+    axiosWithAuth()
+      .post(`/colors`, colorToEdit)
+      .then(response => {
+        console.log(response)
+        setUpdate(Math.random());
+      })
+      .catch( error => {
+        console.log("error", error.message)
+      })
+  };
+
   return (
     <div className="colors-wrap">
       <p>colors</p>
@@ -102,6 +130,31 @@ const ColorList = ({ colors, updateColors, setUpdate }) => {
       )}
       <div className="spacer" />
       {/* stretch - build another form here to add a color */}
+      <form onSubmit={addColor}>
+          <input
+            type="text"
+            name="color"
+            value={colorToEdit.color}
+            placeholder="New Color"
+            onChange={e =>
+              setColorToEdit({ ...colorToEdit, color: e.target.value })
+            }
+          />
+          <input
+            type="text"
+            name="hex"
+            value={colorToEdit.code.hex}
+            placeholder="#hex"
+            onChange={e =>
+              setColorToEdit({
+                ...colorToEdit,
+                code: { hex: e.target.value }
+              })
+            }
+          />
+          <button>Submit</button>
+        </form>
+
     </div>
   );
 };
